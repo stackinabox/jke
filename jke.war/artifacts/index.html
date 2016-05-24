@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="dijit/themes/dijit.css">
+<link rel="stylesheet" type="text/css" href="dijit/themes/tundra/tundra.css">
+<link rel="stylesheet" href="style/jkeweb.css" type="text/css">
+<link rel="shortcut icon" HREF="favicon.jpg">
+<title>JKE Banking</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" djconfig="isDebug: false, parseOnLoad: true, baseUrl: 'dojo/', locale: 'en-us'" src="dojo/dojo.js"></script>
+	
+<script type="text/javascript">
+dojo.require("dojo.parser");
+dojo.require("dijit.layout.BorderContainer");
+dojo.require("dijit.layout.ContentPane");
+dojo.require("dijit.form.TextBox");
+dojo.require("dijit.form.Button");
+dojo.require("dijit.TitlePane");
+dojo.require("dijit.form.Form");
+
+dojo.registerModulePath("com.jke", "/com/jke");
+dojo.require("com.jke.AppController");
+
+dojo.addOnLoad( function() {
+	com.jke.AppController.reloadPage();
+	dojo.subscribe("/dojo/hashchange", this, com.jke.AppController.reloadPage);
+	
+	// wire up some actions
+	dojo.connect(dojo.byId("loginButton"), "onclick",
+				dojo.hitch(this, function(event) {
+					var name = dojo.byId("usernameBox").value;
+					com.jke.AppController.login(name);
+				}));
+	dojo.connect(dojo.byId("logoutButton"), "onclick",
+			com.jke.AppController.logout);
+	dojo.connect(dojo.byId('dividendContLink'), "onclick",
+			com.jke.AppController.showDonationWizard);
+	dojo.connect(dojo.byId('header'), "onclick",
+			dojo.hitch(this, function(event) {
+				com.jke.AppController.navigate({state: "accountSummary"});
+			}));
+			
+	// only show the page after it is fully rendered
+	dojo.style("mainLayout", "visibility", "visible");
+});
+</script>
+</head>
+<body class="tundra">
+<div dojoType="dijit.layout.BorderContainer" id="mainLayout"
+	design="headline" style="height: 100%; width: 1000px; visibility: hidden;" gutters="false">
+<!-- HEADER -->
+<div dojoType="dijit.layout.ContentPane" region="top" id="header" style="cursor:pointer;">
+	<div id="searchContainer">
+		<input dojoType="dijit.form.TextBox" id="searchBox">
+		<button dojoType="dijit.form.Button" label="Search"></button>
+	</div>
+</div>
+
+<!-- SIDEBAR -->
+<div dojoType="dijit.layout.ContentPane" region="left" id="sidebar">
+	<!-- login pane -->
+	<div dojotype="dijit.TitlePane" title="Account Access" class="portlet" id="accountAccessPortlet" toggleable="false">
+		<div id="loginContent" style="display: none">
+			<span id="loginError">Username or password is incorrect!</span>
+			<div dojoType="dijit.form.Form" id="loginForm">
+				<label for="usernameBox">Username:</label>
+				<input dojoType="dijit.form.TextBox" id="usernameBox" style="width: 170px; margin-top: 2px; margin-bottom: 5px;" name="username">
+				<label for="passwordBox">Password:</label>
+				<input dojotype="dijit.form.TextBox" id="passwordBox" style="width: 170px; margin-top: 2px; margin-bottom: 5px;" name="password" type="password">
+			</div>
+			<button dojoType="dijit.form.Button" label="Log in" id="loginButton"></button>
+			<br><br>
+			<a href="#">I forgot my login information</a>
+		</div>
+		<div id="loggedInContent" style="display: none">
+			<p>Welcome, <span id="usersName"></span></p>
+			<button dojoType="dijit.form.Button" label="Logout" id="logoutButton"></button>
+		</div>
+	</div>
+	
+	<!-- Money That Matters portlet -->
+	<div dojotype="dijit.TitlePane" title="Money That Matters" class="portlet" toggleable="false" id="moneyMattersPortlet" style="display: none">
+		<ul class="linkList">
+			<li><a id="dividendContLink">Dividend Contribution</a></li>
+		</ul>
+	</div>
+	
+	<!-- miscellaneous, non-functional panes -->
+	<div dojotype="dijit.TitlePane" title="Services" class="portlet" toggleable="false">
+		<ul class="linkList">
+			<li><a href="#">Certificates of Deposit</a></li>
+			<li><a href="#">Open New Account</a></li>
+			<li><a href="#">Close Account</a></li>
+			<li><a href="#">Policy Change Request</a></li>
+			<li><a href="#">Policy Change Status</a></li>
+		</ul>
+	</div>
+	<div dojotype="dijit.TitlePane" title="Financial Services" class="portlet" toggleable="false">
+		<ul class="linkList">
+			<li><a href="#">Home Equity Lines</a></li>
+			<li><a href="#">Vacation Home Finance</a></li>
+			<li><a href="#">Today's Rates</a></li>
+			<li><a href="#">Refinancing</a></li>
+			<li><a href="#">Mortgage Details</a></li>
+			<li><a href="#">Amortization</a></li>
+			<li><a href="#">Auto Loans</a></li>
+			<li><a href="#state=stockQuote" id="getStockQuoteLink">Get a Stock Quote</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- MAIN CONTENT AREA -->
+<div dojoType="dijit.layout.ContentPane" region="center" id="mainContent">
+	<div id="bigBanner"></div>
+	<div id="functionalArea">
+	</div>
+</div>
+
+<!-- FOOTER -->
+<div dojoType="dijit.layout.ContentPane" region="bottom" id="footer">
+	<div id="sitemap">
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Financial Policies</a></li>
+			<li><a href="#">My Account</a></li>
+			<li><a href="#">Privacy Policy</a></li>
+			<li><a href="#">Customer Service</a></li>
+			<li><a href="#">Branch Locator</a></li>
+		</ul>
+	</div>
+	<div id="boilerplate">Copyright 2010, IBM</div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "name": "MySQL Server",
+    "description": "This component contains the process to install MySQL Server",
+    "importAutomatically": false,
+    "sourceConfigPlugin": "none",
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "envPropDefs": [],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "custom",
+            "properties": []
+        },
+        {
+            "name": "template",
+            "properties": []
+        }
+    ]},
+}

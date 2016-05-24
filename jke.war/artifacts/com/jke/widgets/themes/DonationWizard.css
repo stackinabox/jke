@@ -1,0 +1,21 @@
+.DonationWizard { 
+	 
+}
+	
+.DonationWizard .wizard {
+	margin-left: 30px;
+	height: 250px;
+	width: 400px;
+}
+
+.DonationWizard .page {
+	padding: 5px;
+}
+
+.DonationWizard .label {
+	width: 150px;
+}
+
+.DonationWizard H3 {
+	margin-top: 5px;
+}

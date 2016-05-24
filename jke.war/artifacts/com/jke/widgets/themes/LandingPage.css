@@ -1,0 +1,35 @@
+.LandingPage { 
+	position: relative;
+	margin-left: 10px;
+}
+
+.adContainer {
+	height: 100px;
+	list-style: none;
+	padding: 0px;
+	position: relative;
+	bottom: 0px;
+	cursor: pointer;
+}
+	
+.ad {
+	display: inline-table;
+	width: 231px;
+	height: 100px;
+	padding: 4px;
+	background-position: top;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+#leftAd {
+	background-image: url("/images/JK_bill_pay.png")
+}
+
+#midAd {
+	background-image: url("/images/JK_free_checking.png")
+}
+
+#rightAd {
+	background-image: url("/images/JK_money_that_matters.png")
+}

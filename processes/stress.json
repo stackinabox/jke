@@ -1,0 +1,80 @@
+{
+    "name": "Stress Server",
+    "description": "Load a server CPU",
+    "rootActivity": {
+        "edges": [
+            {
+                "to": "Load it up",
+                "type": "ALWAYS",
+                "value": ""
+            },
+            {
+                "to": "3a0865ce7992f18dd056a7472fe6bb",
+                "from": "Load it up",
+                "type": "SUCCESS",
+                "value": ""
+            }
+        ],
+        "offsets": [
+            {
+                "name": "Load it up",
+                "x": -55,
+                "y": 110,
+                "h": 50,
+                "w": 190
+            },
+            {
+                "name": "3a0865ce7992f18dd056a7472fe6bb",
+                "x": -5,
+                "y": 420,
+                "h": 50,
+                "w": 90
+            }
+        ],
+        "type": "graph",
+        "name": "873f45a8-f5b3-4e02-b55a-b0f800899a3e",
+        "children": [
+            {
+                "type": "finish",
+                "name": "3a0865ce7992f18dd056a7472fe6bb",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "yes > \/dev\/null &\nyes > \/dev\/null &\nyes > \/dev\/null &",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "Load it up",
+                "children": []
+            }
+        ]
+    },
+    "properties": [
+        {
+            "name": "contextType",
+            "value": "Resource",
+            "description": "",
+            "secure": false
+        },
+        {
+            "name": "workingDir",
+            "value": "${p:resource\/work.dir}\/${p:process.name}",
+            "description": "",
+            "secure": false
+        }
+    ],
+    "workingDir": "${p:resource/work.dir}/${p:process.name}",
+    "propDefs": [],
+    "teamMappings": []
+}

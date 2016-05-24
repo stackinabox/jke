@@ -1,0 +1,30 @@
+{
+    "name": "jke.db",
+    "description": "This component contains the process to setup and configure the JKE database on MySQL Server.",
+    "importAutomatically": false,
+    "useVfs": true,
+    "sourceConfigPlugin": "none",
+    "defaultVersionType": "FULL",
+    "envPropDefs": [{
+        "name": "mysql.bin.dir",
+        "label": "mysql.bin.dir",
+        "pattern": "",
+        "type": "TEXT",
+        "value": "\/usr\/bin",
+        "required": true,
+        "description": "",
+        "placeholder": ""
+    }],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "custom",
+            "properties": []
+        },
+        {
+            "name": "template",
+            "properties": []
+        }
+    ]}
+}

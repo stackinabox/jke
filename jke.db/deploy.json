@@ -1,0 +1,111 @@
+{
+    "name": "deploy",
+    "description": "",
+    "component": "jke.db",
+    "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+    "takesVersion": true,
+    "inventoryActionType": "ADD",
+    "status": "Active",
+    "configActionType": "ADD",
+    "active": true,
+    "propDefs": [],
+    "rootActivity": {
+      "edges": [
+          {
+              "to": "Create JKEDB Database",
+              "from": "Download Artifacts",
+              "type": "SUCCESS",
+              "value": ""
+          },
+          {
+              "to": "Download Artifacts",
+              "type": "ALWAYS",
+              "value": ""
+          },
+          {
+              "to": "6cf8f2acda314048a85f7c0c061c02",
+              "from": "Create JKEDB Database",
+              "type": "SUCCESS",
+              "value": ""
+          }
+      ],
+      "offsets": [
+          {
+              "name": "Download Artifacts",
+              "x": -65,
+              "y": 110,
+              "h": 60,
+              "w": 220
+          },
+          {
+              "name": "Create JKEDB Database",
+              "x": -60,
+              "y": 250,
+              "h": 60,
+              "w": 210
+          },
+          {
+              "name": "6cf8f2acda314048a85f7c0c061c02",
+              "x": 0,
+              "y": 370,
+              "h": 50,
+              "w": 90
+          }
+      ],
+      "type": "graph",
+      "name": "e99ac2de-1f1c-4841-ac28-c0bce62172a5",
+      "children": [
+          {
+              "type": "finish",
+              "name": "6cf8f2acda314048a85f7c0c061c02",
+              "children": []
+          },
+          {
+              "allowFailure": false,
+              "useImpersonation": false,
+              "showHidden": false,
+              "impersonationUseSudo": false,
+              "commandName": "Shell",
+              "pluginName": "Shell",
+              "pluginVersion": 6,
+              "properties": {
+                  "directoryOffset": ".",
+                  "shellInterpreter": "",
+                  "scriptBody": "${p:environment\/mysql.bin.dir}${p:agent\/sys.file.separator}mysql -u root < create_database.sql",
+                  "runAsDaemon": "false",
+                  "outputFile": ""
+              },
+              "type": "plugin",
+              "name": "Create JKEDB Database",
+              "children": []
+          },
+          {
+              "allowFailure": false,
+              "useImpersonation": false,
+              "showHidden": false,
+              "impersonationUseSudo": false,
+              "commandName": "Download Artifacts",
+              "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+              "pluginVersion": 21,
+              "properties": {
+                  "directoryOffset": ".",
+                  "artifactSetBaseDir": "",
+                  "fileIncludePatterns": "**\/*",
+                  "fileExcludePatterns": "",
+                  "syncMode": "FULL",
+                  "fullVerification": "true",
+                  "setFileExecuteBits": "false",
+                  "verifyFileIntegrity": "false",
+                  "versionId": "${p:version.id}",
+                  "serverUrl": "${p:server.url}",
+                  "compId": "${p:component.id}",
+                  "resId": "${p:resource.id}",
+                  "charset": ""
+              },
+              "type": "plugin",
+              "name": "Download Artifacts",
+              "children": []
+          }
+      ]
+  }
+}

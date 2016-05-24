@@ -1,0 +1,205 @@
+{
+    "name": "deploy",
+    "component": "WebSphere Liberty Profile",
+    "description": "",
+    "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+    "takesVersion": true,
+    "inventoryActionType": "ADD",
+    "status": "Active",
+    "active": true,
+    "configActionType": "ADD",
+    "propDefs": [],
+    "rootActivity": {
+      "edges": [
+          {
+              "to": "Install WLP",
+              "from": "Download Artifacts",
+              "type": "SUCCESS",
+              "value": ""
+          },
+          {
+              "to": "Ubuntu",
+              "from": "Switch OS",
+              "type": "VALUE",
+              "value": "Linux*"
+          },
+          {
+              "to": "8c5260c87db37f40dfd6d952d169ba",
+              "from": "Ubuntu",
+              "type": "SUCCESS",
+              "value": ""
+          },
+          {
+              "to": "5e8a2e46935565ccdd37d515166c01",
+              "from": "Switch OS",
+              "type": "VALUE",
+              "value": ""
+          },
+          {
+              "to": "Download Artifacts",
+              "type": "ALWAYS",
+              "value": ""
+          },
+          {
+              "to": "8c5260c87db37f40dfd6d952d169ba",
+              "from": "5e8a2e46935565ccdd37d515166c01",
+              "type": "SUCCESS",
+              "value": ""
+          },
+          {
+              "to": "8c5260c87db37f40dfd6d952d169ba",
+              "from": "Windows",
+              "type": "SUCCESS",
+              "value": ""
+          },
+          {
+              "to": "Switch OS",
+              "from": "Install WLP",
+              "type": "SUCCESS",
+              "value": ""
+          },
+          {
+              "to": "Windows",
+              "from": "Switch OS",
+              "type": "VALUE",
+              "value": "Windows*"
+          }
+      ],
+      "offsets": [
+          {
+              "name": "Switch OS",
+              "x": -85,
+              "y": 381,
+              "h": 60,
+              "w": 250
+          },
+          {
+              "name": "Download Artifacts",
+              "x": -70,
+              "y": 119,
+              "h": 60,
+              "w": 220
+          },
+          {
+              "name": "5e8a2e46935565ccdd37d515166c01",
+              "x": -50,
+              "y": 522,
+              "h": 50,
+              "w": 180
+          },
+          {
+              "name": "Ubuntu",
+              "x": -388.5,
+              "y": 517,
+              "h": 60,
+              "w": 240
+          },
+          {
+              "name": "Windows",
+              "x": 211.5,
+              "y": 517,
+              "h": 60,
+              "w": 250
+          },
+          {
+              "name": "8c5260c87db37f40dfd6d952d169ba",
+              "x": -5,
+              "y": 720,
+              "h": 50,
+              "w": 90
+          },
+          {
+              "name": "Install WLP",
+              "x": -30,
+              "y": 246,
+              "h": 60,
+              "w": 140
+          }
+      ],
+      "type": "graph",
+      "name": "2824dc24-e681-41ac-8866-dbca60eaf024",
+      "children": [
+          {
+              "type": "finish",
+              "name": "8c5260c87db37f40dfd6d952d169ba",
+              "children": []
+          },
+          {
+              "allowFailure": false,
+              "useImpersonation": false,
+              "showHidden": false,
+              "impersonationUseSudo": false,
+              "commandName": "Download Artifacts",
+              "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+              "pluginVersion": 21,
+              "properties": {
+                  "directoryOffset": ".",
+                  "artifactSetBaseDir": "",
+                  "fileIncludePatterns": "**\/*",
+                  "fileExcludePatterns": "",
+                  "syncMode": "FULL",
+                  "fullVerification": "true",
+                  "setFileExecuteBits": "false",
+                  "verifyFileIntegrity": "false",
+                  "versionId": "${p:version.id}",
+                  "serverUrl": "${p:server.url}",
+                  "compId": "${p:component.id}",
+                  "resId": "${p:resource.id}",
+                  "charset": ""
+              },
+              "type": "plugin",
+              "name": "Download Artifacts",
+              "children": []
+          },
+          {
+              "allowFailure": false,
+              "useImpersonation": false,
+              "showHidden": false,
+              "impersonationUseSudo": false,
+              "commandName": "Shell",
+              "pluginName": "Shell",
+              "pluginVersion": 6,
+              "properties": {
+                  "directoryOffset": ".",
+                  "shellInterpreter": "",
+                  "scriptBody": "${p:agent\/JAVA_HOME}${p:agent\/sys.file.separator}bin${p:agent\/sys.file.separator}java  -jar wlp-runtime-${p:version.name}.jar  --acceptLicense ${p:environment\/liberty.install.dir}",
+                  "runAsDaemon": "false",
+                  "outputFile": ""
+              },
+              "type": "plugin",
+              "name": "Install WLP",
+              "children": []
+          },
+          {
+              "propertyName": "${p:agent\/sys.os.name}",
+              "type": "switch",
+              "name": "Switch OS",
+              "children": []
+          },
+          {
+              "componentProcessName": "open-firewall-port-ubuntu",
+              "componentName": "WebSphere Liberty Profile",
+              "allowFailure": false,
+              "properties": {},
+              "type": "componentProcess",
+              "name": "Ubuntu",
+              "children": []
+          },
+          {
+              "componentProcessName": "open-firewall-port-windows",
+              "componentName": "WebSphere Liberty Profile",
+              "allowFailure": false,
+              "properties": {},
+              "type": "componentProcess",
+              "name": "Windows",
+              "children": []
+          },
+          {
+              "status": "FAILURE",
+              "type": "setStatus",
+              "name": "5e8a2e46935565ccdd37d515166c01",
+              "children": []
+          }
+      ]
+  }
+}

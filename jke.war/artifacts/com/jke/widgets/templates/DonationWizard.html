@@ -1,0 +1,63 @@
+<div class="DonationWizard">
+		<h2>
+				Money That Matters
+		</h2>
+		<p>
+				Use the wizard below to donate a percentage of dividends earned this period to a charity organization of your choice.
+		</p>
+		<div dojoType="dojox.widget.Wizard" doneButtonLabel="Confirm" dojoattachpoint="contWizard" class="wizard">
+				<div dojoType="dojox.widget.WizardPane" class="page" title="Contribution Setup" canGoBack="false" dojoattachpoint="contributionPane" style="height: 200px; width: 400px">
+						<table>
+								<tbody>
+										<tr>
+												<td>Account:</td>
+												<td><div dojotype="dijit.form.Select" dojoattachpoint="accountSelect"></div>
+												</td>
+										</tr>
+										<tr>
+												<td>Organization:</td>
+												<td><div dojotype="dijit.form.Select" dojoattachpoint="charitySelect"></div>
+												</td>
+										</tr>
+										<tr>
+												<td>Percentage:</td>
+												<td><div dojotype="dijit.form.NumberTextBox" dojoattachpoint="percentageBox" style="width: 10ex;" constraints="{min:1,max:100,places:0}" invalidmessage="Enter a whole number between 1 and 100" rangemessage="Enter a whole number between 1 and 100">
+														</div>
+														<span style="padding-left: 5px">%</span></td>
+										</tr>
+								</tbody>
+						</table>
+						<div dojoattachpoint="errorMessage" style="display: none; color: red">
+								Enter a valid percentage to continue.
+						</div>
+				</div>
+				<div dojoType="dojox.widget.WizardPane" class="page" title="Confirmation" dojoattachpoint="donePane" style="height: 200px; width: 400px">
+						<h3>
+								Confirm your selections:
+						</h3>
+						<div>
+								<table style="margin-left: 20px;">
+										<tbody>
+												<tr>
+														<td>Account:</td>
+														<td><span style="font-weight: bold" dojoattachpoint="accountSummary"></span>
+														</td>
+												</tr>
+												<tr>
+														<td>Organization:</td>
+														<td><span style="font-weight: bold" dojoattachpoint="charitySummary"></span>
+														</td>
+												</tr>
+												<tr>
+														<td>Percentage:</td>
+														<td><span style="font-weight: bold" dojoattachpoint="percentSummary"></span>%</td>
+												</tr>
+										</tbody>
+								</table>
+								<p>
+										By clicking Confirm, you authorize the amount <span dojoattachpoint="dollarSummary"></span> to be deducted from your account balance and donated to the organization shown above.
+								</p>
+						</div>
+				</div>
+		</div>
+</div>

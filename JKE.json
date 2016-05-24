@@ -1,0 +1,5 @@
+{
+  "name": "JKE",
+  "description": "Sample JKE Banking application",
+  "enforceCompleteSnapshots": false
+}

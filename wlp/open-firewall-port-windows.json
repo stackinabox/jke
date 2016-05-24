@@ -1,0 +1,71 @@
+{
+    "name": "open-firewall-port-windows",
+    "description": "",
+    "component": "WebSphere Liberty Profile",
+    "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+    "takesVersion": true,
+    "inventoryActionType": "ADD",
+    "status": "Active",
+    "configActionType": "ADD",
+    "active": true,
+    "propDefs": [],
+    "rootActivity": {
+        "edges": [
+            {
+                "to": "ef2bbd8a54469cf18a0c49559dda86",
+                "from": "Open Port in Firewall",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Open Port in Firewall",
+                "type": "ALWAYS",
+                "value": ""
+            }
+        ],
+        "offsets": [
+            {
+                "name": "Open Port in Firewall",
+                "x": -55,
+                "y": 179,
+                "h": 60,
+                "w": 190
+            },
+            {
+                "name": "ef2bbd8a54469cf18a0c49559dda86",
+                "x": -5,
+                "y": 420,
+                "h": 50,
+                "w": 90
+            }
+        ],
+        "type": "graph",
+        "name": "54423f67-a43f-4c27-8de1-9702a4ae6aaf",
+        "children": [
+            {
+                "type": "finish",
+                "name": "ef2bbd8a54469cf18a0c49559dda86",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "netsh advfirewall firewall add rule name=\"WAS Liberty Default HTTP Port\" dir=in action=allow protocol=TCP localport=9080",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "Open Port in Firewall",
+                "children": []
+            }
+        ]
+    }
+}

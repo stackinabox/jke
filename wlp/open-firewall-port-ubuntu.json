@@ -1,0 +1,71 @@
+{
+    "name": "open-firewall-port-ubuntu",
+    "description": "",
+    "component": "WebSphere Liberty Profile",
+    "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+    "takesVersion": true,
+    "inventoryActionType": "ADD",
+    "status": "Active",
+    "configActionType": "ADD",
+    "active": true,
+    "propDefs": [],
+    "rootActivity": {
+        "edges": [
+            {
+                "to": "deb4ad2ca15ef7bffde3a05319cbf1",
+                "from": "Open Port in Firewall",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Open Port in Firewall",
+                "type": "ALWAYS",
+                "value": ""
+            }
+        ],
+        "offsets": [
+            {
+                "name": "Open Port in Firewall",
+                "x": -55,
+                "y": 170,
+                "h": 60,
+                "w": 190
+            },
+            {
+                "name": "deb4ad2ca15ef7bffde3a05319cbf1",
+                "x": -5,
+                "y": 420,
+                "h": 50,
+                "w": 90
+            }
+        ],
+        "type": "graph",
+        "name": "02a2b18e-fbaa-4b68-81bf-e42cce065acf",
+        "children": [
+            {
+                "type": "finish",
+                "name": "deb4ad2ca15ef7bffde3a05319cbf1",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "iptables -A INPUT -p tcp --dport 9080 -j ACCEPT",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "Open Port in Firewall",
+                "children": []
+            }
+        ]
+    }
+}

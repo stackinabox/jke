@@ -1,0 +1,128 @@
+@IMPORT url("/dojox/widget/Wizard/Wizard.css");
+@IMPORT url("/com/jke/widgets/themes/AccountSummary.css");
+@IMPORT url("/com/jke/widgets/themes/AccountDetails.css");
+@IMPORT url("/com/jke/widgets/themes/LandingPage.css");
+@IMPORT url("/com/jke/widgets/themes/DonationWizard.css");
+
+body, html { 
+ 	width:100%; 
+ 	height:100%; 
+ 	margin:0; 
+ 	padding:0; 
+ 	overflow: auto; 
+ 	background-color: #e5e5e5;
+ 	font-family: arial, sans-serif;
+ 	font-size: small;
+ 	
+ 	/* add a background gradient? */
+	background-attachment: fixed;
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-image: url("../images/background_gradient.png");
+}
+
+#mainLayout {
+	margin: auto;
+	background-color: white;
+}
+
+#header {
+	border-bottom: 1px solid silver;
+	background-position: top;
+	background-repeat: no-repeat;
+	background-image: url("../images/jke_banner.png");
+	height: 65px;
+	background-color: #e5e5e5;
+}
+
+#searchContainer {
+	position: relative;
+	float: right;
+	margin-right: 25px;
+	margin-top: 8px;
+}
+
+#bigBanner {
+	max-width: 780px;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-image: url("../images/jke_auto_loans.png");
+}
+
+#sidebar {
+	margin-right: 8px;
+	padding-top: 5px;
+	padding-left: 5px;
+	border-left: 1px solid silver;
+	overflow: hidden;
+}
+
+.portlet {
+	margin-bottom: 5px;
+	width: 200px;
+}
+
+#loginError {
+	display: none;
+	color: red;
+}
+
+#usersName {
+	font-style: oblique;
+}
+
+#mainContent {
+	padding-top: 5px;
+	border-right: 1px solid silver;
+}
+
+#functionalArea {
+	margin: 10 0 0 0;
+	padding: 1em;
+}
+
+#footer {
+	text-align: center;
+	border-top: 1px solid silver;
+	padding: 10px;
+	font-size: smaller;
+	padding-left: 20px;
+	padding-right: 20px;
+	color: gray;
+	border-left: 1px solid silver;
+	border-right: 1px solid silver;
+}
+
+#loginForm {
+	padding: 2px;
+	margin-bottom: 3px;
+}
+
+.linkList A {
+	color: #444;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.linkList LI:HOVER {
+	background-color: #e5e5e5;
+}
+
+.linkList LI {
+	padding: .2em;
+}
+
+.linkList, #sitemap UL {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#sitemap LI {
+	display: inline;
+	margin: 0 .2em 0 .2em;
+}
+
+#boilerplate {
+	margin-top: 1em;
+}

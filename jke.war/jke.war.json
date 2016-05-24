@@ -1,0 +1,47 @@
+{
+    "name": "jke.war",
+    "description": "JKE Banking Sample Application Web Application Resource Archive",
+    "created": 1425236356322,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "envPropDefs": [
+        {
+            "name": "liberty.install.dir",
+            "label": "liberty.install.dir",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\/opt\/was\/liberty",
+            "required": true,
+            "description": "",
+            "placeholder": ""
+        },
+        {
+            "name": "jke.db.host",
+            "label": "jke.db.host",
+            "pattern": "",
+            "type": "TEXT",
+            "required": true,
+            "description": "",
+            "placeholder": ""
+        }
+    ],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "custom",
+            "properties": []
+        },
+        {
+            "name": "template",
+            "properties": []
+        }
+    ]}
+}

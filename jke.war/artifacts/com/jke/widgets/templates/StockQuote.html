@@ -1,0 +1,20 @@
+<div class="StockQuote">
+	<fieldset>
+		<legend>Stock Quote</legend>
+		<div id="enterTickerContent">
+			<div id="stockQuoteForm">
+				<label for="usernameBox">Ticker Symbol:</label>
+				<input dojoType="dijit.form.TextBox" dojoattachpoint="tickerSymbolBox" style="width: 170px; margin-top: 2px; margin-bottom: 5px;" name="tickerSymbol">
+			</div>
+			<button dojoType="dijit.form.Button" label="Get Quote" dojoattachpoint="stockQuoteButton"></button>
+			<br><br>
+			<span id="stockQuoteError" style="display: none">Error occured while retrieving quote!</span>
+			<span id="stockQuoteErrorDetail" style="display: none"></span>
+		</div>
+		<div id="displayTickerContent" style="display: none">
+			<p>Ticker Symbol: <span id="displayTickerSymbol"></span></p>
+			<p>Current Price: <span id="displayTickerPrice"></span></p>
+			<button dojoType="dijit.form.Button" label="Get A New Quote" dojoattachpoint="newStockQuoteButton"></button>
+		</div>
+	</fieldset>
+</div>

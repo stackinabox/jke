@@ -1,0 +1,175 @@
+{
+    "name": "deploy-ubuntu",
+    "component": "MySQL Server",
+    "description": "Install MySQL Server",
+    "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+    "takesVersion": true,
+    "inventoryActionType": "ADD",
+    "status": "Active",
+    "configActionType": "ADD",
+    "active": true,
+    "propDefs": [],
+    "rootActivity": {
+        "edges": [
+            {
+                "to": "Start MySQL",
+                "from": "Open Port in Firewall",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "4ca7b4637565245c76c45aca105bb8",
+                "from": "Start MySQL",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Open Port in Firewall",
+                "from": "Install MySQL",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Download Artifacts",
+                "type": "ALWAYS",
+                "value": ""
+            },
+            {
+                "to": "Install MySQL",
+                "from": "Download Artifacts",
+                "type": "SUCCESS",
+                "value": ""
+            }
+        ],
+        "offsets": [
+            {
+                "name": "Download Artifacts",
+                "x": -70,
+                "y": 110,
+                "h": 60,
+                "w": 220
+            },
+            {
+                "name": "Install MySQL",
+                "x": -35,
+                "y": 220,
+                "h": 60,
+                "w": 150
+            },
+            {
+                "name": "Open Port in Firewall",
+                "x": -55,
+                "y": 330,
+                "h": 60,
+                "w": 190
+            },
+            {
+                "name": "4ca7b4637565245c76c45aca105bb8",
+                "x": -5,
+                "y": 570,
+                "h": 50,
+                "w": 90
+            },
+            {
+                "name": "Start MySQL",
+                "x": -35,
+                "y": 440,
+                "h": 60,
+                "w": 150
+            }
+        ],
+        "type": "graph",
+        "name": "abb84356-2fc8-43d4-b585-606985648324",
+        "children": [
+            {
+                "type": "finish",
+                "name": "4ca7b4637565245c76c45aca105bb8",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "\nexport DEBIAN_FRONTEND=noninteractive\ndpkg -i libaio1_0.3.109-4_amd64.deb\ndpkg -i mysql-common_5.6.22-2ubuntu14.04_amd64.deb\ndpkg -i mysql-community-server_5.6.22-2ubuntu14.04_amd64.deb\ndpkg -i mysql-community-client_5.6.22-2ubuntu14.04_amd64.deb\ndpkg -i libmysqlclient18_5.6.22-2ubuntu14.04_amd64.deb\n\n# stop mysql\nservice mysql stop;\n\n# bind mysqld listen port to all network interfaces\nsed -i 's\/bind-address\t= 127.0.0.1\/#bind-address\t= 127.0.0.1\/g' \/etc\/mysql\/my.cnf\nsed -i 's\/symbolic-links=0\/skip-name-resolve\/g' \/etc\/mysql\/my.cnf",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "Install MySQL",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Download Artifacts",
+                "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                "pluginVersion": 21,
+                "properties": {
+                    "directoryOffset": ".",
+                    "artifactSetBaseDir": "",
+                    "fileIncludePatterns": "**\/*.deb",
+                    "fileExcludePatterns": "",
+                    "syncMode": "true",
+                    "fullVerification": "true",
+                    "setFileExecuteBits": "false",
+                    "verifyFileIntegrity": "false",
+                    "versionId": "${p:version.id}",
+                    "serverUrl": "${p:server.url}",
+                    "compId": "${p:component.id}",
+                    "resId": "${p:resource.id}",
+                    "charset": ""
+                },
+                "type": "plugin",
+                "name": "Download Artifacts",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "service mysql start;",
+                    "runAsDaemon": "true",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "Start MySQL",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "iptables -A INPUT -p tcp --dport 3306 -j ACCEPT",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "Open Port in Firewall",
+                "children": []
+            }
+        ]
+    }
+}

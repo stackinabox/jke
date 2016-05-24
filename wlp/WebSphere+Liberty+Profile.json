@@ -1,0 +1,31 @@
+{
+    "name": "WebSphere Liberty Profile",
+    "description": "This component contains the binaries and process to install WebSphere Liberty Profile",
+    "importAutomatically": false,
+    "sourceConfigPlugin": "none",
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "envPropDefs": [{
+        "name": "liberty.install.dir",
+        "label": "Liberty Install Directory",
+        "pattern": "",
+        "type": "TEXT",
+        "value": "\/opt\/was\/liberty",
+        "required": true,
+        "description": "",
+        "placeholder": ""
+    }],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "custom",
+            "properties": []
+        },
+        {
+            "name": "template",
+            "properties": []
+        }
+    ]}
+}

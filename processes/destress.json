@@ -1,0 +1,80 @@
+{
+    "name": "De-stress server CPU",
+    "description": "unload  a server CPUs",
+    "rootActivity": {
+        "edges": [
+            {
+                "to": "3a0865ce7992f18dd056a7472fe6bb",
+                "from": "unload it",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "unload it",
+                "type": "ALWAYS",
+                "value": ""
+            }
+        ],
+        "offsets": [
+            {
+                "name": "3a0865ce7992f18dd056a7472fe6bb",
+                "x": -5,
+                "y": 420,
+                "h": 50,
+                "w": 90
+            },
+            {
+                "name": "unload it",
+                "x": -55,
+                "y": 110,
+                "h": 50,
+                "w": 180
+            }
+        ],
+        "type": "graph",
+        "name": "9cd10897-bb5b-4e31-b845-66a66bf40620",
+        "children": [
+            {
+                "type": "finish",
+                "name": "3a0865ce7992f18dd056a7472fe6bb",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "killall yes",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "unload it",
+                "children": []
+            }
+        ]
+    },
+    "properties": [
+        {
+            "name": "contextType",
+            "value": "Resource",
+            "description": "",
+            "secure": false
+        },
+        {
+            "name": "workingDir",
+            "value": "${p:resource\/work.dir}\/${p:process.name}",
+            "description": "",
+            "secure": false
+        }
+    ],
+    "workingDir": "${p:resource/work.dir}/${p:process.name}",
+    "propDefs": [],
+    "teamMappings": []
+}

@@ -1,0 +1,33 @@
+<div class="AccountDetails">
+		<h2>
+				Account Details
+		</h2>
+		<span>Account: </span>
+		<div dojotype="dijit.form.Select" dojoattachpoint="accountSelect"></div>
+		<h3 dojoattachpoint="accountLabel"></h3>
+		<table class="mainTable">
+				<tbody dojoattachpoint="tableBody">
+						<tr>
+								<td>Balance</td>
+								<td dojoattachpoint="balanceValue" class="right"></td>
+						</tr>
+						<tr class="odd">
+								<td>Dividends earned this period</td>
+								<td dojoattachpoint="dividendsValue" class="right"></td>
+						</tr>
+						<tr>
+								<td>Dividends earned to date</td>
+								<td dojoattachpoint="dividendsETDValue" class="right"></td>
+						</tr>
+						<tr class="odd">
+								<td>Dividends contributed this period</td>
+								<td dojoattachpoint="dividendsContValue" class="right"></td>
+						</tr>
+						<tr>
+								<td>Dividends contributed to date</td>
+								<td dojoattachpoint="dividendsContETDValue" class="right"></td>
+						</tr>
+		</table>
+		<button dojoType="dijit.form.Button" label="Transaction History" dojoattachpoint="transactionHistoryButton"></button>
+		<button dojoType="dijit.form.Button" label="Allocate Dividend Percentage" dojoattachpoint="dividendPercentageButton"></button>
+</div>

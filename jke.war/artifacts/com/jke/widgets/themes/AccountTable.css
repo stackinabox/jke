@@ -1,0 +1,35 @@
+.AccountTable table { 
+ 	 border-collapse: collapse;
+	 background-color: white;
+	 width: 600px;
+	 margin-bottom: 3em;
+	 margin-left: 2em;
+}
+
+.AccountTable h2, .AccountTable h3 { 
+	 margin-top: 0;
+	 margin-bottom: 0;
+}
+
+.AccountTable td {
+	padding-right:30px;
+	padding-left: 10px;
+}
+
+.AccountTable thead td {
+	color: #8c8c8c;
+	font-weight:bold;
+	border-bottom: 1px solid black;
+}
+
+.jsLink {
+	cursor:pointer;
+	outline:medium none;
+	text-decoration:underline;
+	white-space:nowrap;
+	color: blue;
+}
+
+.right {
+	text-align: right;
+}
