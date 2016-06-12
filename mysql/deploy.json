@@ -6,128 +6,129 @@
     "takesVersion": true,
     "inventoryActionType": "ADD",
     "status": "Active",
-    "active": true,
     "configActionType": "ADD",
+    "active": true,
+    "path": "components\/db5c4fca-ba01-4d25-a968-8c0373c5b0fb\/processes\/6a138b52-cdb7-4049-86a9-8dc27930b654",
     "propDefs": [],
     "rootActivity": {
-      "edges": [
-          {
-              "to": "1a4457bf38f3877b2265755063c585",
-              "from": "Deploy MySQL (Ubuntu)",
-              "type": "SUCCESS",
-              "value": ""
-          },
-          {
-              "to": "Deploy MySQL (Ubuntu)",
-              "from": "Switch OS",
-              "type": "VALUE",
-              "value": "Linux*"
-          },
-          {
-              "to": "Switch OS",
-              "type": "ALWAYS",
-              "value": ""
-          },
-          {
-              "to": "1a4457bf38f3877b2265755063c585",
-              "from": "e147512b678b3262c3110ceb3045c5",
-              "type": "SUCCESS",
-              "value": ""
-          },
-          {
-              "to": "Deploy MySQL (Windows)",
-              "from": "Switch OS",
-              "type": "VALUE",
-              "value": "Windows*"
-          },
-          {
-              "to": "1a4457bf38f3877b2265755063c585",
-              "from": "Deploy MySQL (Windows)",
-              "type": "SUCCESS",
-              "value": ""
-          },
-          {
-              "to": "e147512b678b3262c3110ceb3045c5",
-              "from": "Switch OS",
-              "type": "VALUE",
-              "value": ""
-          }
-      ],
-      "offsets": [
-          {
-              "name": "e147512b678b3262c3110ceb3045c5",
-              "x": -50,
-              "y": 302,
-              "h": 50,
-              "w": 180
-          },
-          {
-              "name": "Switch OS",
-              "x": -85,
-              "y": 170,
-              "h": 60,
-              "w": 250
-          },
-          {
-              "name": "Deploy MySQL (Ubuntu)",
-              "x": -319.5,
-              "y": 297,
-              "h": 60,
-              "w": 210
-          },
-          {
-              "name": "1a4457bf38f3877b2265755063c585",
-              "x": -5,
-              "y": 470,
-              "h": 50,
-              "w": 90
-          },
-          {
-              "name": "Deploy MySQL (Windows)",
-              "x": 195,
-              "y": 297,
-              "h": 60,
-              "w": 220
-          }
-      ],
-      "type": "graph",
-      "name": "90f6daeb-3e37-4b46-a8f6-b1fb06cd1a71",
-      "children": [
-          {
-              "type": "finish",
-              "name": "1a4457bf38f3877b2265755063c585",
-              "children": []
-          },
-          {
-              "propertyName": "${p:agent\/sys.os.name}",
-              "type": "switch",
-              "name": "Switch OS",
-              "children": []
-          },
-          {
-              "componentProcessName": "deploy-ubuntu",
-              "componentName": "MySQL Server",
-              "allowFailure": false,
-              "properties": {},
-              "type": "componentProcess",
-              "name": "Deploy MySQL (Ubuntu)",
-              "children": []
-          },
-          {
-              "componentProcessName": "deploy-windows",
-              "componentName": "MySQL Server",
-              "allowFailure": false,
-              "properties": {},
-              "type": "componentProcess",
-              "name": "Deploy MySQL (Windows)",
-              "children": []
-          },
-          {
-              "status": "FAILURE",
-              "type": "setStatus",
-              "name": "e147512b678b3262c3110ceb3045c5",
-              "children": []
-          }
-      ]
-  }
-}
+        "edges": [
+            {
+                "to": "1a4457bf38f3877b2265755063c585",
+                "from": "e147512b678b3262c3110ceb3045c5",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Switch OS",
+                "type": "ALWAYS",
+                "value": ""
+            },
+            {
+                "to": "1a4457bf38f3877b2265755063c585",
+                "from": "Deploy MySQL (Windows)",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "e147512b678b3262c3110ceb3045c5",
+                "from": "Switch OS",
+                "type": "VALUE",
+                "value": ""
+            },
+            {
+                "to": "1a4457bf38f3877b2265755063c585",
+                "from": "Deploy MySQL (Ubuntu)",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Deploy MySQL (Ubuntu)",
+                "from": "Switch OS",
+                "type": "VALUE",
+                "value": "Linux*"
+            },
+            {
+                "to": "Deploy MySQL (Windows)",
+                "from": "Switch OS",
+                "type": "VALUE",
+                "value": "Windows*"
+            }
+        ],
+        "offsets": [
+            {
+                "name": "Deploy MySQL (Windows)",
+                "x": 195,
+                "y": 297,
+                "h": 60,
+                "w": 220
+            },
+            {
+                "name": "Deploy MySQL (Ubuntu)",
+                "x": -319.5,
+                "y": 297,
+                "h": 60,
+                "w": 210
+            },
+            {
+                "name": "Switch OS",
+                "x": -85,
+                "y": 170,
+                "h": 60,
+                "w": 250
+            },
+            {
+                "name": "e147512b678b3262c3110ceb3045c5",
+                "x": -50,
+                "y": 302,
+                "h": 50,
+                "w": 180
+            },
+            {
+                "name": "1a4457bf38f3877b2265755063c585",
+                "x": -5,
+                "y": 470,
+                "h": 50,
+                "w": 90
+            }
+        ],
+        "type": "graph",
+        "name": "099f5552-75cd-45ed-a037-3f5cb78dd6b4",
+        "children": [
+            {
+                "type": "finish",
+                "name": "1a4457bf38f3877b2265755063c585",
+                "children": []
+            },
+            {
+                "propertyName": "${p:agent\/sys.os.name}",
+                "type": "switch",
+                "name": "Switch OS",
+                "children": []
+            },
+            {
+                "componentProcessName": "deploy-ubuntu",
+                "componentName": "MySQL Server",
+                "allowFailure": false,
+                "properties": {},
+                "type": "componentProcess",
+                "name": "Deploy MySQL (Ubuntu)",
+                "children": []
+            },
+            {
+                "componentProcessName": "deploy-windows",
+                "componentName": "MySQL Server",
+                "allowFailure": false,
+                "properties": {},
+                "type": "componentProcess",
+                "name": "Deploy MySQL (Windows)",
+                "children": []
+            },
+            {
+                "status": "FAILURE",
+                "type": "setStatus",
+                "name": "e147512b678b3262c3110ceb3045c5",
+                "children": []
+            }
+        ]
+    }
+                }

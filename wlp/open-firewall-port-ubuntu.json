@@ -1,13 +1,14 @@
 {
     "name": "open-firewall-port-ubuntu",
-    "description": "",
     "component": "WebSphere Liberty Profile",
+    "description": "",
     "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
     "takesVersion": true,
     "inventoryActionType": "ADD",
     "status": "Active",
     "configActionType": "ADD",
     "active": true,
+    "path": "components\/fb079dcf-6304-4370-81ca-07f83ffce96a\/processes\/9a1a6ba4-6271-4671-9216-86a6bb22b1d5",
     "propDefs": [],
     "rootActivity": {
         "edges": [
@@ -25,22 +26,22 @@
         ],
         "offsets": [
             {
-                "name": "Open Port in Firewall",
-                "x": -55,
-                "y": 170,
-                "h": 60,
-                "w": 190
-            },
-            {
                 "name": "deb4ad2ca15ef7bffde3a05319cbf1",
                 "x": -5,
                 "y": 420,
                 "h": 50,
                 "w": 90
+            },
+            {
+                "name": "Open Port in Firewall",
+                "x": -55,
+                "y": 170,
+                "h": 60,
+                "w": 190
             }
         ],
         "type": "graph",
-        "name": "02a2b18e-fbaa-4b68-81bf-e42cce065acf",
+        "name": "8d101379-2d03-45ed-89b9-3d569a3b5776",
         "children": [
             {
                 "type": "finish",

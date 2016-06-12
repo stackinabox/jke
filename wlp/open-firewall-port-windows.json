@@ -1,13 +1,14 @@
 {
     "name": "open-firewall-port-windows",
-    "description": "",
     "component": "WebSphere Liberty Profile",
+    "description": "",
     "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
     "takesVersion": true,
     "inventoryActionType": "ADD",
     "status": "Active",
     "configActionType": "ADD",
     "active": true,
+    "path": "components\/fb079dcf-6304-4370-81ca-07f83ffce96a\/processes\/a6f578f4-e50a-4d6c-b927-b200ef68a434",
     "propDefs": [],
     "rootActivity": {
         "edges": [
@@ -40,7 +41,7 @@
             }
         ],
         "type": "graph",
-        "name": "54423f67-a43f-4c27-8de1-9702a4ae6aaf",
+        "name": "44bbcd59-c2c1-4795-bd47-0d017addfcc5",
         "children": [
             {
                 "type": "finish",

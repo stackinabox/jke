@@ -1,16 +1,23 @@
 {
-    "active": true,
-    "component": "jke.war",
     "name": "deploy",
+    "component": "jke.war",
     "description": "",
     "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
     "takesVersion": true,
     "inventoryActionType": "ADD",
     "status": "Active",
     "configActionType": "ADD",
+    "active": true,
+    "path": "components\/699310d2-32ee-4ef6-b1ca-998d3b4eb6d8\/processes\/7388ad90-0c76-4cec-8c99-42fcecbfe47b",
     "propDefs": [],
     "rootActivity": {
         "edges": [
+            {
+                "to": "Stop Server",
+                "from": "Create WAR archive",
+                "type": "SUCCESS",
+                "value": ""
+            },
             {
                 "to": "Update Property File",
                 "from": "Download Artifacts",
@@ -18,21 +25,10 @@
                 "value": ""
             },
             {
-                "to": "c310f67f7df0be52fdb29d47b3383a",
-                "from": "Install or Update Application via Dropins",
-                "type": "SUCCESS",
-                "value": ""
-            },
-            {
-                "to": "Download Artifacts",
-                "type": "ALWAYS",
-                "value": ""
-            },
-            {
-                "to": "Install or Update Application via Dropins",
-                "from": "Stop Server",
-                "type": "ALWAYS",
-                "value": ""
+                "to": "Start Server on Linux",
+                "from": "Switch OS",
+                "type": "VALUE",
+                "value": "Linux*"
             },
             {
                 "to": "Create WAR archive",
@@ -41,14 +37,14 @@
                 "value": ""
             },
             {
-                "to": "Switch OS",
-                "from": "c310f67f7df0be52fdb29d47b3383a",
-                "type": "SUCCESS",
+                "to": "Create File",
+                "from": "Stop Server",
+                "type": "ALWAYS",
                 "value": ""
             },
             {
                 "to": "c310f67f7df0be52fdb29d47b3383a",
-                "from": "Create File",
+                "from": "Install or Update Application via Dropins",
                 "type": "SUCCESS",
                 "value": ""
             },
@@ -65,72 +61,42 @@
                 "value": "Windows*"
             },
             {
-                "to": "Start Server on Linux",
-                "from": "Switch OS",
-                "type": "VALUE",
-                "value": "Linux*"
-            },
-            {
                 "to": "5902fde95deb22dbdd66792de7d275",
                 "from": "Start Server on Linux",
                 "type": "SUCCESS",
                 "value": ""
             },
             {
-                "to": "Stop Server",
-                "from": "Create WAR archive",
+                "to": "c310f67f7df0be52fdb29d47b3383a",
+                "from": "Create File",
                 "type": "SUCCESS",
                 "value": ""
             },
             {
-                "to": "Create File",
+                "to": "Install or Update Application via Dropins",
                 "from": "Stop Server",
+                "type": "ALWAYS",
+                "value": ""
+            },
+            {
+                "to": "Switch OS",
+                "from": "c310f67f7df0be52fdb29d47b3383a",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Download Artifacts",
                 "type": "ALWAYS",
                 "value": ""
             }
         ],
         "offsets": [
             {
-                "name": "Update Property File",
-                "x": -90,
-                "y": 223,
-                "h": 60,
-                "w": 260
-            },
-            {
-                "name": "Start Server on Linux",
-                "x": 132.5,
-                "y": 900,
-                "h": 60,
-                "w": 190
-            },
-            {
-                "name": "Start Server on Windows",
-                "x": -252.5,
-                "y": 900,
-                "h": 60,
-                "w": 210
-            },
-            {
                 "name": "Create File",
                 "x": -245,
                 "y": 550,
                 "h": 60,
                 "w": 170
-            },
-            {
-                "name": "Create WAR archive",
-                "x": -60,
-                "y": 327,
-                "h": 60,
-                "w": 200
-            },
-            {
-                "name": "c310f67f7df0be52fdb29d47b3383a",
-                "x": -10,
-                "y": 674,
-                "h": 50,
-                "w": 100
             },
             {
                 "name": "Install or Update Application via Dropins",
@@ -140,11 +106,25 @@
                 "w": 320
             },
             {
-                "name": "Download Artifacts",
-                "x": -70,
-                "y": 114,
+                "name": "Stop Server",
+                "x": -45,
+                "y": 420,
                 "h": 60,
-                "w": 220
+                "w": 170
+            },
+            {
+                "name": "Start Server on Windows",
+                "x": -252.5,
+                "y": 900,
+                "h": 60,
+                "w": 210
+            },
+            {
+                "name": "Create WAR archive",
+                "x": -60,
+                "y": 327,
+                "h": 60,
+                "w": 200
             },
             {
                 "name": "5902fde95deb22dbdd66792de7d275",
@@ -154,6 +134,20 @@
                 "w": 90
             },
             {
+                "name": "c310f67f7df0be52fdb29d47b3383a",
+                "x": -10,
+                "y": 674,
+                "h": 50,
+                "w": 100
+            },
+            {
+                "name": "Start Server on Linux",
+                "x": 132.5,
+                "y": 900,
+                "h": 60,
+                "w": 190
+            },
+            {
                 "name": "Switch OS",
                 "x": -85,
                 "y": 780,
@@ -161,15 +155,22 @@
                 "w": 250
             },
             {
-                "name": "Stop Server",
-                "x": -45,
-                "y": 420,
+                "name": "Download Artifacts",
+                "x": -70,
+                "y": 114,
                 "h": 60,
-                "w": 170
+                "w": 220
+            },
+            {
+                "name": "Update Property File",
+                "x": -90,
+                "y": 223,
+                "h": 60,
+                "w": 260
             }
         ],
         "type": "graph",
-        "name": "2ffc534b-bad1-4e97-b2a1-6c8abdc0ba0c",
+        "name": "f029bc46-f917-4bab-9f62-2042d3bdb97a",
         "children": [
             {
                 "type": "finish",
@@ -183,7 +184,7 @@
                 "impersonationUseSudo": false,
                 "commandName": "Download Artifacts",
                 "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
-                "pluginVersion": 21,
+                "pluginVersion": 26,
                 "properties": {
                     "directoryOffset": ".",
                     "artifactSetBaseDir": "",
@@ -197,7 +198,8 @@
                     "serverUrl": "${p:server.url}",
                     "compId": "${p:component.id}",
                     "resId": "${p:resource.id}",
-                    "charset": ""
+                    "charset": "",
+                    "label": ""
                 },
                 "type": "plugin",
                 "name": "Download Artifacts",
@@ -210,7 +212,7 @@
                 "impersonationUseSudo": false,
                 "commandName": "Update Java Properties File",
                 "pluginName": "File Utils",
-                "pluginVersion": 39,
+                "pluginVersion": 46,
                 "properties": {
                     "customEncoding": "",
                     "useSystemEncoding": "false",
@@ -233,7 +235,7 @@
                 "impersonationUseSudo": false,
                 "commandName": "Create .zip File",
                 "pluginName": "File Utils",
-                "pluginVersion": 39,
+                "pluginVersion": 46,
                 "properties": {
                     "zipName": "JKE.war",
                     "baseDir": ".",
@@ -241,7 +243,8 @@
                     "excludes": "",
                     "update": "false",
                     "followSymlinks": "false",
-                    "caseSensitive": "true"
+                    "caseSensitive": "true",
+                    "customEncoding": ""
                 },
                 "type": "plugin",
                 "name": "Create WAR archive",
@@ -288,11 +291,12 @@
                 "workingDir": "${p:environment\/liberty.install.dir}${p:agent\/sys.file.separator}wlp${p:agent\/sys.file.separator}usr${p:agent\/sys.file.separator}servers${p:agent\/sys.file.separator}defaultServer",
                 "commandName": "Create File",
                 "pluginName": "File Utils",
-                "pluginVersion": 39,
+                "pluginVersion": 46,
                 "properties": {
                     "file": "server.xml",
                     "contents": "<server description=\"new server\">\n\n    <!-- Enable features -->\n    <featureManager>\n        <feature>jsp-2.2<\/feature>\n    <\/featureManager>\n\n    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host=\"*\" -->\n    <httpEndpoint id=\"defaultHttpEndpoint\"\n                  host=\"*\"\n                  httpPort=\"9080\"\n                  httpsPort=\"9443\" \/>\n\n<\/server>",
-                    "overwrite": "true"
+                    "overwrite": "true",
+                    "customEncoding": ""
                 },
                 "type": "plugin",
                 "name": "Create File",

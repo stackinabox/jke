@@ -8,12 +8,13 @@
     "status": "Active",
     "configActionType": "ADD",
     "active": true,
+    "path": "components\/db5c4fca-ba01-4d25-a968-8c0373c5b0fb\/processes\/f6d4d314-ba84-4dbe-8dfa-8363bd91eab3",
     "propDefs": [],
     "rootActivity": {
         "edges": [
             {
-                "to": "Start MySQL",
-                "from": "Open Port in Firewall",
+                "to": "Install MySQL",
+                "from": "Download Artifacts",
                 "type": "SUCCESS",
                 "value": ""
             },
@@ -24,9 +25,15 @@
                 "value": ""
             },
             {
-                "to": "Open Port in Firewall",
-                "from": "Install MySQL",
+                "to": "configure mysql",
+                "from": "Stop MySQL",
                 "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Start MySQL",
+                "from": "Open Port in Firewall",
+                "type": "ALWAYS",
                 "value": ""
             },
             {
@@ -35,51 +42,71 @@
                 "value": ""
             },
             {
-                "to": "Install MySQL",
-                "from": "Download Artifacts",
+                "to": "Open Port in Firewall",
+                "from": "configure mysql",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Stop MySQL",
+                "from": "Install MySQL",
                 "type": "SUCCESS",
                 "value": ""
             }
         ],
         "offsets": [
             {
-                "name": "Download Artifacts",
-                "x": -70,
-                "y": 110,
-                "h": 60,
+                "name": "configure mysql",
+                "x": -57.5,
+                "y": 440,
+                "h": 50,
                 "w": 220
             },
             {
                 "name": "Install MySQL",
                 "x": -35,
                 "y": 220,
-                "h": 60,
-                "w": 150
+                "h": 50,
+                "w": 210
             },
             {
-                "name": "Open Port in Firewall",
-                "x": -55,
-                "y": 330,
-                "h": 60,
-                "w": 190
+                "name": "Download Artifacts",
+                "x": -102.5,
+                "y": 110,
+                "h": 50,
+                "w": 320
             },
             {
                 "name": "4ca7b4637565245c76c45aca105bb8",
-                "x": -5,
-                "y": 570,
+                "x": 12.5,
+                "y": 810,
                 "h": 50,
                 "w": 90
             },
             {
+                "name": "Open Port in Firewall",
+                "x": -42.5,
+                "y": 530,
+                "h": 60,
+                "w": 190
+            },
+            {
                 "name": "Start MySQL",
-                "x": -35,
-                "y": 440,
+                "x": -22.5,
+                "y": 640,
                 "h": 60,
                 "w": 150
+            },
+            {
+                "name": "Stop MySQL",
+                "x": -30,
+                "y": 340,
+                "h": 50,
+                "w": 200
             }
         ],
         "type": "graph",
-        "name": "abb84356-2fc8-43d4-b585-606985648324",
+        "name": "a4274f55-1b9d-46cd-9a29-08c7027d3397",
         "children": [
             {
                 "type": "finish",
@@ -91,13 +118,14 @@
                 "useImpersonation": false,
                 "showHidden": false,
                 "impersonationUseSudo": false,
+                "workingDir": "\/var\/cache\/apt\/archives",
                 "commandName": "Shell",
                 "pluginName": "Shell",
                 "pluginVersion": 6,
                 "properties": {
                     "directoryOffset": ".",
                     "shellInterpreter": "",
-                    "scriptBody": "\nexport DEBIAN_FRONTEND=noninteractive\ndpkg -i libaio1_0.3.109-4_amd64.deb\ndpkg -i mysql-common_5.6.22-2ubuntu14.04_amd64.deb\ndpkg -i mysql-community-server_5.6.22-2ubuntu14.04_amd64.deb\ndpkg -i mysql-community-client_5.6.22-2ubuntu14.04_amd64.deb\ndpkg -i libmysqlclient18_5.6.22-2ubuntu14.04_amd64.deb\n\n# stop mysql\nservice mysql stop;\n\n# bind mysqld listen port to all network interfaces\nsed -i 's\/bind-address\t= 127.0.0.1\/#bind-address\t= 127.0.0.1\/g' \/etc\/mysql\/my.cnf\nsed -i 's\/symbolic-links=0\/skip-name-resolve\/g' \/etc\/mysql\/my.cnf",
+                    "scriptBody": "\nexport DEBIAN_FRONTEND=noninteractive\ndpkg -i psm*.deb  lib*.deb mysql-common*.deb\ndpkg -i mysql-client-*.deb\ndpkg -i mysql-server-*.deb \ndpkg -i mysql-server_*.deb\n",
                     "runAsDaemon": "false",
                     "outputFile": ""
                 },
@@ -110,15 +138,16 @@
                 "useImpersonation": false,
                 "showHidden": false,
                 "impersonationUseSudo": false,
+                "workingDir": "\/var\/cache\/apt\/archives",
                 "commandName": "Download Artifacts",
                 "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
-                "pluginVersion": 21,
+                "pluginVersion": 26,
                 "properties": {
                     "directoryOffset": ".",
                     "artifactSetBaseDir": "",
                     "fileIncludePatterns": "**\/*.deb",
                     "fileExcludePatterns": "",
-                    "syncMode": "true",
+                    "syncMode": "FULL",
                     "fullVerification": "true",
                     "setFileExecuteBits": "false",
                     "verifyFileIntegrity": "false",
@@ -126,7 +155,8 @@
                     "serverUrl": "${p:server.url}",
                     "compId": "${p:component.id}",
                     "resId": "${p:resource.id}",
-                    "charset": ""
+                    "charset": "",
+                    "label": ""
                 },
                 "type": "plugin",
                 "name": "Download Artifacts",
@@ -168,6 +198,44 @@
                 },
                 "type": "plugin",
                 "name": "Open Port in Firewall",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "# bind mysqld listen port to all network interfaces\nsed -i '\/bind-address\/c\\#' \/etc\/mysql\/my.cnf\nsed -i '\/symbolic-links\/c\\#' \/etc\/mysql\/my.cnf",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "configure mysql",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "pluginVersion": 6,
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "# stop mysql\nservice mysql stop;\n",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "type": "plugin",
+                "name": "Stop MySQL",
                 "children": []
             }
         ]
