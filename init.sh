@@ -134,6 +134,8 @@ nova secgroup-create mysql-sg "MySQL security group for your mysql servers."
 nova secgroup-add-rule mysql-sg tcp 22 22 '0.0.0.0/0'
 nova secgroup-add-rule mysql-sg tcp 3306 3306 '0.0.0.0/0'
 
+$PATTERN_HOME/init-tutorial.sh
+
 
 # push jke.yml pattern into gitblit repo for ucdp workspace
 # sudo apt-get install -qqy expect
