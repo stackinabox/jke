@@ -58,7 +58,7 @@ curl -u $DS_USERNAME:$DS_PASSWORD \
      -d "
   {
     \"definitionGroupId\": \"05e2d7ed-6f7c-4b98-93d0-caedca00eb4t\",
-    \"description\": \"MySQL bin directory\",
+    \"description\": \"MySQL bin Directory\",
     \"label\": \"MySQL Bin Dir\",
     \"name\": \"mysql.bin.dir\",
     \"pattern\": \"\",
@@ -118,7 +118,7 @@ udclient addComponentToApplication -component jke.db -application JKE
 udclient addComponentToApplication -component jke.war -application JKE
 
 # add security groups for JKE sample application
-nova secgroup-create was-liberty-sg "WebSphere Liberty security group for your liberty hosted application servers."
+nova secgroup-create was-liberty-sg "Ports required for applications hosted on WebSphere Liberty."
 
 # add security group rule to allow http access
 nova secgroup-add-rule was-liberty-sg tcp 22 22 '0.0.0.0/0'
@@ -128,7 +128,7 @@ nova secgroup-add-rule was-liberty-sg tcp 9080 9080 '0.0.0.0/0'
 nova secgroup-add-rule was-liberty-sg tcp 9443 9443 '0.0.0.0/0'
 
 # add security groups for JKE sample application
-nova secgroup-create mysql-sg "MySQL security group for your mysql servers."
+nova secgroup-create mysql-sg "Ports required for MySQL Server."
 
 #specific to websphere
 nova secgroup-add-rule mysql-sg tcp 22 22 '0.0.0.0/0'
