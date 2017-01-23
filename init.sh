@@ -1,29 +1,31 @@
 #!/bin/bash
 
-# source environment variables for OpenStack and UCD
-source ~/openrc
+# # source environment variables for OpenStack and UCD
+# source ~/openrc
+
+PATTERN_NAME=jke
+DS_USERNAME=admin
+DS_PASSWORD=admin
+DS_WEB_URL=http://192.168.27.100:8080
 
 # add example jke application to UCD
 curl --verbose -u $DS_USERNAME:$DS_PASSWORD -s --insecure -F "file=@/vagrant/patterns/jke/plugins/WebSphereLiberty-7.778014.zip;type=application/zip" -F "filename=WebSphereLiberty-2.455142.zip" $DS_WEB_URL/rest/plugin/automationPlugin
 
-PATTERN_NAME=jke
-PATTERN_HOME=/vagrant/patterns/$PATTERN_NAME
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponent /artifacts/mysql/MySQL+Server.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponentProcess /artifacts/mysql/deploy-ubuntu.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponentProcess /artifacts/mysql/deploy-windows.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponentProcess /artifacts/mysql/deploy.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createVersion -component "MySQL Server" -name 5.5.49
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addVersionFiles -component "MySQL Server" -version 5.5.49 -base /artifacts/mysql/artifacts/ -exclude .DS_Store
 
-udclient createComponent $PATTERN_HOME/mysql/MySQL+Server.json
-udclient createComponentProcess $PATTERN_HOME/mysql/deploy-ubuntu.json
-udclient createComponentProcess $PATTERN_HOME/mysql/deploy-windows.json
-udclient createComponentProcess $PATTERN_HOME/mysql/deploy.json
-udclient createVersion -component "MySQL Server" -name 5.5.49
-udclient addVersionFiles -component "MySQL Server" -version 5.5.49 -base $PATTERN_HOME/mysql/artifacts/ -exclude .DS_Store
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponent /artifacts/wlp/WebSphere+Liberty+Profile.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponentProcess /artifacts/wlp/open-firewall-port-ubuntu.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponentProcess /artifacts/wlp/open-firewall-port-windows.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponentProcess /artifacts/wlp/deploy.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createVersion -component "WebSphere Liberty Profile" -name 16.0.0.4
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addVersionFiles -component "WebSphere Liberty Profile" -version 16.0.0.4 -base /artifacts/wlp/artifacts/ -exclude .DS_Store
 
-udclient createComponent $PATTERN_HOME/wlp/WebSphere+Liberty+Profile.json
-udclient createComponentProcess $PATTERN_HOME/wlp/open-firewall-port-ubuntu.json
-udclient createComponentProcess $PATTERN_HOME/wlp/open-firewall-port-windows.json
-udclient createComponentProcess $PATTERN_HOME/wlp/deploy.json
-udclient createVersion -component "WebSphere Liberty Profile" -name 8.5.5.5
-udclient addVersionFiles -component "WebSphere Liberty Profile" -version 8.5.5.5 -base $PATTERN_HOME/wlp/artifacts/ -exclude .DS_Store
-
-wasLibertyId=`udclient getComponent -component "WebSphere Liberty Profile" | python -c \
+wasLibertyId=`docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client getComponent -component "WebSphere Liberty Profile" | python -c \
 "import json; import sys;
 data=json.load(sys.stdin); print data['id']"`
 
@@ -44,11 +46,11 @@ curl -u $DS_USERNAME:$DS_PASSWORD \
 " \
 ""$DS_WEB_URL"/property/propSheetDef/components&"$wasLibertyId"&environmentPropSheetDef.-1/propDefs"
 
-udclient createComponent $PATTERN_HOME/jke.db/jke.db.json
-udclient createComponentProcess $PATTERN_HOME/jke.db/deploy.json
-udclient createVersion -component jke.db -name 1.0
-udclient addVersionFiles -component jke.db -version 1.0 -base $PATTERN_HOME/jke.db/artifacts/ -exclude .DS_Store
-jkeDbId=`udclient getComponent -component jke.db | python -c \
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponent /artifacts/jke.db/jke.db.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponentProcess /artifacts/jke.db/deploy.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createVersion -component jke.db -name 1.0
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addVersionFiles -component jke.db -version 1.0 -base /artifacts/jke.db/artifacts/ -exclude .DS_Store
+jkeDbId=`docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client getComponent -component jke.db | python -c \
 "import json; import sys;
 data=json.load(sys.stdin); print data['id']"`
 
@@ -69,11 +71,11 @@ curl -u $DS_USERNAME:$DS_PASSWORD \
 " \
 ""$DS_WEB_URL"/property/propSheetDef/components&"$jkeDbId"&environmentPropSheetDef.-1/propDefs"
 
-udclient createComponent $PATTERN_HOME/jke.war/jke.war.json
-udclient createComponentProcess $PATTERN_HOME/jke.war/deploy.json
-udclient createVersion -component jke.war -name 1.0
-udclient addVersionFiles -component jke.war -version 1.0 -base $PATTERN_HOME/jke.war/artifacts/ -exclude .DS_Store
-jkeWarId=`udclient getComponent -component jke.war | python -c \
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponent /artifacts/jke.war/jke.war.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createComponentProcess /artifacts/jke.war/deploy.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createVersion -component jke.war -name 1.0
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addVersionFiles -component jke.war -version 1.0 -base /artifacts/jke.war/artifacts/ -exclude .DS_Store
+jkeWarId=`docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client getComponent -component jke.war | python -c \
 "import json; import sys;
 data=json.load(sys.stdin); print data['id']"`
 
@@ -111,30 +113,18 @@ curl -u $DS_USERNAME:$DS_PASSWORD \
 " \
 ""$DS_WEB_URL"/property/propSheetDef/components&"$jkeWarId"&environmentPropSheetDef.-1/propDefs"
 
-udclient createApplication $PATTERN_HOME/JKE.json
-udclient addComponentToApplication -component "MySQL Server" -application JKE
-udclient addComponentToApplication -component "WebSphere Liberty Profile" -application JKE
-udclient addComponentToApplication -component jke.db -application JKE
-udclient addComponentToApplication -component jke.war -application JKE
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client createApplication /artifacts/JKE.json
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addComponentToApplication -component "MySQL Server" -application JKE
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addComponentToApplication -component "WebSphere Liberty Profile" -application JKE
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addComponentToApplication -component jke.db -application JKE
+docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addComponentToApplication -component jke.war -application JKE
 
-# add security groups for JKE sample application
-nova secgroup-create was-liberty-sg "WebSphere Liberty security group for your liberty hosted application servers."
+# clone "demo" user repo from local gitblit server
+git config --global user.name "gitadmin"
+git config --global 
+git clone http://gitadmin@192.168.27.100:9080/gitblit/r/demo.git
 
-# add security group rule to allow http access
-nova secgroup-add-rule was-liberty-sg tcp 22 22 '0.0.0.0/0'
-nova secgroup-add-rule was-liberty-sg tcp 80 80 '0.0.0.0/0'
-nova secgroup-add-rule was-liberty-sg tcp 443 443 '0.0.0.0/0'
-nova secgroup-add-rule was-liberty-sg tcp 9080 9080 '0.0.0.0/0'
-nova secgroup-add-rule was-liberty-sg tcp 9443 9443 '0.0.0.0/0'
-
-# add security groups for JKE sample application
-nova secgroup-create mysql-sg "MySQL security group for your mysql servers."
-
-#specific to websphere
-nova secgroup-add-rule mysql-sg tcp 22 22 '0.0.0.0/0'
-nova secgroup-add-rule mysql-sg tcp 3306 3306 '0.0.0.0/0'
-
-$PATTERN_HOME/init-tutorial.sh
+$(pwd)/init-tutorial.sh
 
 
 # push jke.yml pattern into gitblit repo for ucdp workspace
