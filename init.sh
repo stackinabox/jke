@@ -60,7 +60,7 @@ curl -u $DS_USERNAME:$DS_PASSWORD \
      -d "
   {
     \"definitionGroupId\": \"05e2d7ed-6f7c-4b98-93d0-caedca00eb4t\",
-    \"description\": \"MySQL bin directory\",
+    \"description\": \"MySQL bin Directory\",
     \"label\": \"MySQL Bin Dir\",
     \"name\": \"mysql.bin.dir\",
     \"pattern\": \"\",
@@ -120,9 +120,9 @@ docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addComp
 docker run --rm -v $(pwd):/artifacts stackinabox/urbancode-deploy-client addComponentToApplication -component jke.war -application JKE
 
 # clone "demo" user repo from local gitblit server
-git config --global user.name "gitadmin"
-git config --global 
-git clone http://gitadmin@192.168.27.100:9080/gitblit/r/demo.git
+# git config --global user.name "gitadmin"
+# git config --global 
+# git clone http://gitadmin@192.168.27.100:9080/gitblit/r/demo.git
 
 $(pwd)/init-tutorial.sh
 
